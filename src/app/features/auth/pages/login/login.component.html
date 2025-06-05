@@ -1,0 +1,94 @@
+<div class="flex items-center justify-center min-h-screen bg-[#F2F6FA]">
+  <div
+    class="bg-white shadow-xl rounded-4xl p-10 w-full max-w-[450px] h-[600px] sm:w-11/12 border border-[#D4DEE8] flex flex-col justify-center"
+  >
+    <h2 class="text-2xl font-bold text-center mb-4 text-[#070C63]">
+      Inicio de sesión
+    </h2>
+    <div class="h-0.5 w-1/2 mx-auto mb-8 bg-[#070C63] rounded-full"></div>
+
+    <form (ngSubmit)="login()" class="space-y-6">
+      <!-- Email -->
+      <div class="relative">
+        <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#B0BAC6]">
+          <!-- ícono email -->
+        </span>
+        <input
+          type="email"
+          [(ngModel)]="email"
+          name="email"
+          class="w-full border border-[#D4DEE8] rounded-md py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-[#070C63] placeholder:font-light placeholder:text-[#B0BAC6] text-[#344050]"
+          placeholder="example@gmail.com"
+          required
+        />
+      </div>
+
+      <!-- Password -->
+      <div class="relative">
+        <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#B0BAC6]">
+          <!-- ícono candado -->
+        </span>
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="password"
+          name="password"
+          class="w-full border border-[#D4DEE8] rounded-md py-2 pl-10 pr-10 focus:outline-none focus:ring-2 focus:ring-[#070C63] placeholder:font-light placeholder:text-[#B0BAC6] text-[#344050]"
+          placeholder="Contraseña"
+          required
+        />
+        <button
+          type="button"
+          (click)="showPassword = !showPassword"
+          class="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#B0BAC6] focus:outline-none"
+        >
+          <!-- ícono ojo / cerrado -->
+        </button>
+      </div>
+
+      <!-- Error -->
+      @if (error) {
+      <div
+        class="bg-[#FDECEA] border border-[#C0392B] text-[#C0392B] px-4 py-3 rounded relative"
+        role="alert"
+      >
+        <span class="block sm:inline">{{ error }}</span>
+      </div>
+      }
+
+      <!-- Recordar y olvidó -->
+      <div class="flex justify-between text-sm text-[#344050]">
+        <label class="inline-flex items-center mb-9">
+          <input type="checkbox" name="recordar" class="form-checkbox mr-2" />
+          Recordar contraseña
+        </label>
+        <a href="auth/forgetpassword" class="font-semibold hover:underline">
+          ¿Olvidó su contraseña?
+        </a>
+      </div>
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        [disabled]="cargando"
+        class="w-full bg-[#070C63] text-white py-2 rounded-md font-semibold hover:bg-[#050A4F] transition duration-300 flex items-center justify-center"
+      >
+        @if (cargando) {
+        <svg class="animate-spin h-5 w-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
+          viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+          </path>
+        </svg>
+        Iniciando sesión... } @else { Inicia sesión }
+      </button>
+
+      <h3 class="text-center text-sm text-[#344050] mt-6">
+        ¿No tienes cuenta?
+        <a href="/base/auth/register" class="text-[#070C63] font-semibold hover:underline ml-1">
+          Regístrate aquí
+        </a>
+      </h3>
+    </form>
+  </div>
+</div>
