@@ -12,6 +12,11 @@ export const routes: Routes = [
       import('./features/public/public.routes').then((m) => m.default),
   },
   {
+    path: 'private',
+    loadChildren: () =>
+      import('./features/private/private.routes').then((m) => m.default),
+  },
+  {
     path: '**',
     redirectTo: '/public/home',
   },

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../../../../core/services/auth.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -8,14 +10,28 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  email = '';
+  mail = '';
   password = '';
   error = '';
   cargando = false;
   showPassword = false;
 
-  login() {
+  constructor(private authService: AuthService, private router: Router) {}
+
+  onSubmit() {
     this.error = '';
     this.cargando = true;
+
+    this.authService.login(this.mail, this.password).subscribe({
+      next: (response) => {
+        this.cargando = false;
+        this.router.navigate(['/private/dashboard']);
+      },
+      error: (error) => {
+        this.error =
+          'Error al iniciar sesión: ' + (error.message || 'Error desconocido');
+        this.cargando = false;
+      },
+    });
   }
 }

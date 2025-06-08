@@ -12,57 +12,13 @@
         <nav aria-label="Global">
           <ul class="flex items-center gap-6 text-sm">
             <li>
-              <a
-                class="text-blue-950 transition hover:text-blue-950/75"
-                href="/public/home"
-              >
-                Inicio
-              </a>
+              <a class="text-blue-950 transition hover:text-blue-950/75" href="/public/home">Inicio</a>
             </li>
-
             <li>
-              <a
-                class="text-blue-950 transition hover:text-blue-950/75"
-                href="#"
-              >
-                Careers
-              </a>
+              <a class="text-blue-950 transition hover:text-blue-950/75" href="/public/news">Noticias</a>
             </li>
-
             <li>
-              <a
-                class="text-blue-950 transition hover:text-blue-950/75"
-                href="#"
-              >
-                History
-              </a>
-            </li>
-
-            <li>
-              <a
-                class="text-blue-950 transition hover:text-blue-950/75"
-                href="#"
-              >
-                Services
-              </a>
-            </li>
-
-            <li>
-              <a
-                class="text-blue-950 transition hover:text-blue-950/75"
-                href="#"
-              >
-                Projects
-              </a>
-            </li>
-
-            <li>
-              <a
-                class="text-blue-950 transition hover:text-blue-950/75"
-                href="/public/uspage"
-              >
-                Sobre nosotros
-              </a>
+              <a class="text-blue-950 transition hover:text-blue-950/75" href="/public/uspage">Sobre nosotros</a>
             </li>
           </ul>
         </nav>
@@ -70,12 +26,22 @@
 
       <div class="flex items-center gap-4">
         <div class="sm:flex sm:gap-4">
-          <a
-            class="rounded-md bg-blue-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm"
-            href="/auth/login"
-          >
-            Login
-          </a>
+          @if (authService.isLoggedIn()) {
+            <button
+              (click)="logout()"
+              class="rounded-md bg-blue-600 px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-700 transition"
+              type="button"
+            >
+              Cerrar sesión
+            </button>
+          } @else {
+            <a
+              class="rounded-md bg-blue-900 px-5 py-2.5 text-sm font-medium text-white shadow-sm"
+              href="/auth/login"
+            >
+              Login
+            </a>
+          }
         </div>
 
         <div class="block md:hidden">
