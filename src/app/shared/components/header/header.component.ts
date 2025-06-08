@@ -9,7 +9,12 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  constructor(public authService: AuthService, private router: Router) {}
+  isLoggedIn = false;
+  constructor(public authService: AuthService, private router: Router) {
+    this.authService.sessionStatus$.subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+  }
 
   logout() {
     this.authService.logout();

@@ -25,7 +25,7 @@ export class LoginComponent {
     this.authService.login(this.mail, this.password).subscribe({
       next: (response) => {
         this.cargando = false;
-        this.router.navigate(['/private/dashboard']);
+        this.router.navigate(['/private/audit']);
       },
       error: (error) => {
         this.error =
