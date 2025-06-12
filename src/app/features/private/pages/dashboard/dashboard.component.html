@@ -1,1 +1,36 @@
-<p>dashboard works!</p>
+<div *ngIf="isLoading" class="fixed inset-0 flex justify-center items-center bg-white z-50">
+    <img src="loading.gif" alt="Cargando..." class="w-80 h-80" />
+</div>
+<div class="container mx-auto p-6">
+    <div class="flex items-center justify-between mb-6">
+        <h1 class="text-2xl font-bold text-[#1f2937] text-center flex-grow">
+            Estadísticas y Reportes
+        </h1>
+    </div>
+
+    <div #chartContainer id="chart-container"
+        class="flex flex-col gap-8 border border-[#d1d5db] rounded-lg px-55 shadow-lg">
+        <!-- Gráfico Tipo -->
+        <div>
+            <h2 class="text-center font-semibold mb-4 text-[#111827]">Tipo de Auditoría</h2>
+            <canvas baseChart [data]="tipoChartData" [options]="barOptions" [type]="'bar'"></canvas>
+        </div>
+        <!-- Gráfico Año -->
+        <div>
+            <h2 class="text-center font-semibold mb-4 text-[#111827]">Auditorías por Año</h2>
+            <canvas baseChart [data]="anioChartData" [options]="barOptions" [type]="'bar'"></canvas>
+        </div>
+        <!-- Gráfico Estatus -->
+        <div class="px-50 mb-8">
+            <h2 class="text-center font-semibold mb-4 text-[#111827]">Estatus de Auditorías</h2>
+            <canvas baseChart [data]="estatusChartData" [options]="pieOptions" [type]="'pie'"></canvas>
+        </div>
+
+    </div>
+    <div class="flex justify-center mt-6">
+        <button (click)="exportToPDF()" style="background-color: #2563eb;"
+            class="text-white hover:opacity-90 px-4 py-2 rounded shadow">
+            Exportar PDF
+        </button>
+    </div>
+</div>
