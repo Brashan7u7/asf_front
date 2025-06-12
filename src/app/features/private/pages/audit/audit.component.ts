@@ -12,6 +12,7 @@ import {
   styleUrl: './audit.component.scss',
 })
 export class AuditComponent {
+  isLoading = true;
   auditorias: Auditoria[] = [];
   constructor(private auditoriaService: AuditService) {}
 
@@ -19,6 +20,7 @@ export class AuditComponent {
     this.auditoriaService.getAuditorias().subscribe({
       next: (data) => {
         this.auditorias = data;
+        this.isLoading = false;
       },
       error: (error) => {
         console.error('Error al cargar auditorías:', error);

@@ -1,75 +1,32 @@
+<div *ngIf="isLoading" class="fixed inset-0 flex justify-center items-center bg-white z-50">
+  <img src="loading.gif" alt="Cargando..." class="w-80 h-80" />
+</div>
+
 <div class="pt-20 px-60 flex items-center">
   <div class="w-1 h-5 bg-blue-600 mr-2"></div>
-  <span class="font-semibold text-gray-900">Reporte del día</span>
-</div>
-
-<section
-  class="pt-5 pb-12 px-30 max-w-7xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 justify-center"
->
-  <app-card
-    class="col-span-2"
-    imageUrl="https://imagenes.elpais.com/resizer/v2/JXJE6WIOLNDMVLNP2XVQJOBBEY?auth=cc1e47c6cbfda19b706e7f22034f93c02e9ed4f024476f5cab4318856eda997a&width=1200"
-    title="Los Angeles wildfires: 'We are in a new normal"
-    subtitle="The wildfires in Los Angeles have become a regular occurrence, with devastating impacts on the community and environment."
-    layout="vertical"
-    size="lg"
-  ></app-card>
-
-  <app-card
-    class="col-span-1"
-    imageUrl="https://imagenes.elpais.com/resizer/v2/JXJE6WIOLNDMVLNP2XVQJOBBEY?auth=cc1e47c6cbfda19b706e7f22034f93c02e9ed4f024476f5cab4318856eda997a&width=1200"
-    title="Los Angeles wildfires: 'We are in a new normal"
-    subtitle="The wildfires in Los Angeles have become a regular occurrence, with devastating impacts on the community and environment."
-    layout="vertical"
-    size="md"
-  ></app-card>
-  <app-card
-    class="col-span-1"
-    imageUrl="https://imagenes.elpais.com/resizer/v2/JXJE6WIOLNDMVLNP2XVQJOBBEY?auth=cc1e47c6cbfda19b706e7f22034f93c02e9ed4f024476f5cab4318856eda997a&width=1200"
-    title="Los Angeles wildfires: 'We are in a new normal"
-    subtitle="The wildfires in Los Angeles have become a regular occurrence, with devastating impacts on the community and environment."
-    layout="vertical"
-    size="sm"
-  ></app-card>
-  <app-card
-    class="col-span-1"
-    imageUrl="https://imagenes.elpais.com/resizer/v2/JXJE6WIOLNDMVLNP2XVQJOBBEY?auth=cc1e47c6cbfda19b706e7f22034f93c02e9ed4f024476f5cab4318856eda997a&width=1200"
-    title="Los Angeles wildfires: 'We are in a new normal"
-    subtitle="The wildfires in Los Angeles have become a regular occurrence, with devastating impacts on the community and environment."
-    layout="vertical"
-    size="sm"
-  ></app-card>
-  <app-card
-    class="col-span-1"
-    imageUrl="https://imagenes.elpais.com/resizer/v2/JXJE6WIOLNDMVLNP2XVQJOBBEY?auth=cc1e47c6cbfda19b706e7f22034f93c02e9ed4f024476f5cab4318856eda997a&width=1200"
-    title="Los Angeles wildfires: 'We are in a new normal"
-    subtitle="The wildfires in Los Angeles have become a regular occurrence, with devastating impacts on the community and environment."
-    layout="vertical"
-    size="sm"
-  ></app-card>
-</section>
-<div class="pt-10 px-60 flex items-center">
-  <div class="w-1 h-5 bg-green-600 mr-2"></div>
   <span class="font-semibold text-gray-900">Reporte de la semana</span>
 </div>
-<section
-  class="pt-5 pb-12 px-30 max-w-7xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 justify-center"
->
-  <app-card
-    class="col-span-2"
-    imageUrl="https://imagenes.elpais.com/resizer/v2/JXJE6WIOLNDMVLNP2XVQJOBBEY?auth=cc1e47c6cbfda19b706e7f22034f93c02e9ed4f024476f5cab4318856eda997a&width=1200"
-    title="Los Angeles wildfires: 'We are in a new normal"
-    subtitle="The wildfires in Los Angeles have become a regular occurrence, with devastating impacts on the community and environment."
-    layout="horizontal"
-    size="md"
-  ></app-card>
 
-  <app-card
-    class="col-span-2"
-    imageUrl="https://imagenes.elpais.com/resizer/v2/JXJE6WIOLNDMVLNP2XVQJOBBEY?auth=cc1e47c6cbfda19b706e7f22034f93c02e9ed4f024476f5cab4318856eda997a&width=1200"
-    title="Los Angeles wildfires: 'We are in a new normal"
-    subtitle="The wildfires in Los Angeles have become a regular occurrence, with devastating impacts on the community and environment."
-    layout="horizontal"
-    size="md"
-  ></app-card>
+<section
+  class="pt-5 pb-12 px-30 max-w-7xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 justify-center">
+  <app-card *ngIf="noticias.length > 0" class="col-span-2" [imageUrl]="noticias[0].img_portada"
+    [title]="noticias[0].titulo" [subtitle]="noticias[0].descripcion" layout="vertical" size="lg"></app-card>
+
+  <ng-container *ngFor="let noticia of noticias.slice(1, 5)">
+    <app-card class="col-span-1" [imageUrl]="noticia.img_portada" [title]="noticia.titulo"
+      [subtitle]="noticia.descripcion" layout="vertical" size="sm"></app-card>
+  </ng-container>
+</section>
+
+<div class="pt-10 px-60 flex items-center">
+  <div class="w-1 h-5 bg-green-600 mr-2"></div>
+  <span class="font-semibold text-gray-900">Echa un vistazo</span>
+</div>
+
+<section
+  class="pt-5 pb-12 px-30 max-w-7xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 justify-center">
+  <ng-container *ngFor="let noticia of noticias.slice(5)">
+    <app-card class="col-span-2" [imageUrl]="noticia.img_portada" [title]="noticia.titulo"
+      [subtitle]="noticia.descripcion" layout="horizontal" size="md"></app-card>
+  </ng-container>
 </section>

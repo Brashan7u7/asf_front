@@ -16,7 +16,7 @@ export interface Auditoria {
   providedIn: 'root',
 })
 export class AuditService {
-  private api = 'https://asf-back-by73.onrender.com/auditoria';
+  private api = 'https://asf-back-by73.onrender.com/auditoria/dashboard';
   constructor(private http: HttpClient) {}
 
   getAuditorias(): Observable<Auditoria[]> {
