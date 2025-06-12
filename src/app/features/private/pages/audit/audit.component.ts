@@ -6,6 +6,7 @@ import {
   AuditService,
 } from '../../../../core/services/audit.service';
 import { SearchFormComponent } from '../../../../shared/components/search-form/search-form.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-audit',
@@ -23,7 +24,10 @@ export class AuditComponent {
   searchText: string = '';
   selectedOption: string = 'Todos';
 
-  constructor(private auditoriaService: AuditService) {}
+  constructor(private auditoriaService: AuditService, private router: Router) {}
+  verDetalle(id: number) {
+    this.router.navigate(['private/more', id]);
+  }
 
   ngOnInit(): void {
     this.loadAuditorias();

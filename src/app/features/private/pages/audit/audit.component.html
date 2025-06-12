@@ -30,6 +30,7 @@
       <tbody>
         <tr
           *ngFor="let auditoria of auditorias"
+          (click)="verDetalle(auditoria.id)"
           class="bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 text-center"
         >
           <td
@@ -50,7 +51,7 @@
             <span
               class="bg-blue-200 text-blue-900 px-4 py-2 rounded-full font-semibold text-center block"
             >
-              {{ auditoria.estatus }}
+                {{ auditoria.estatus === 1 ? 'Recibido' : auditoria.estatus === 2 ? 'En proceso' : auditoria.estatus === 3 ? 'Atendido' : auditoria.estatus }}
             </span>
           </td>
           <td class="px-6 py-4 text-center">

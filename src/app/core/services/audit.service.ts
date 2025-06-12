@@ -2,14 +2,29 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+export interface Usuario {
+  id: number;
+  nombre: string;
+  ape_paterno: string;
+  ape_materno: string;
+  correo: string;
+  rol: boolean;
+}
+
 export interface Auditoria {
   id: number;
   nombre: string;
   tipo: string;
   fecha: string;
   entidad: string;
-  estatus: string;
+  estatus: number;
   favorito: boolean;
+
+  descripcion: string;
+  observaciones: string;
+  resultados: string;
+  activo: string;
+  usuario: Usuario;
 }
 
 export interface AuditoriaResponse {
@@ -54,5 +69,9 @@ export class AuditService {
     return this.http.get<any[]>(
       `http:///asf-back-by73.onrender.com/auditoria/filtro/${filtro}`
     );
+  }
+
+  getAuditoriaById(id: number): Observable<Auditoria> {
+    return this.http.get<Auditoria>(`${this.api}/${id}`);
   }
 }
