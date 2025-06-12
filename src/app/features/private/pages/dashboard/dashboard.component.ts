@@ -1,11 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuditService, Auditoria } from '../../../../core/services/audit.service';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import { NgChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuditoriaDash, DashboardService } from '../../../../core/services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,7 +16,7 @@ import { CommonModule } from '@angular/common';
 export class DashboardComponent implements OnInit {
   @ViewChild('chartContainer') chartContainer!: ElementRef;
   isLoading = true;
-  auditorias: Auditoria[] = [];
+  auditorias: AuditoriaDash[] = [];
   tipoLabels: string[] = [];
   tipoData: number[] = [];
   anioLabels: string[] = [];
@@ -49,10 +49,10 @@ export class DashboardComponent implements OnInit {
     animation: { animateScale: true },
   };
 
-  constructor(private router: Router, private auditoriaService: AuditService) { }
+  constructor(private router: Router, private dashboardService: DashboardService) { }
 
   ngOnInit(): void {
-    this.auditoriaService.getAuditorias().subscribe({
+    this.dashboardService.getAuditorias().subscribe({
       next: (data) => {
         this.auditorias = data;
         this.procesarDatos();

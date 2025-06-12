@@ -54,6 +54,7 @@ export class AuditComponent {
           this.auditorias = response.data;
           this.totalPages = response.lastPage;
           this.currentPage = response.page;
+          this.isLoading = false;
         },
         error: (error) => {
           console.error('Error al cargar auditorías:', error);
