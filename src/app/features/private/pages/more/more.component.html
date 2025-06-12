@@ -1,0 +1,81 @@
+<div
+  class="py-12 px-4 sm:px-8 lg:px-16 bg-[#F2F6FA] min-h-screen flex justify-center items-start"
+>
+  <div
+    class="w-full max-w-3xl bg-white border border-[#D4DEE8] rounded-3xl shadow-xl p-10"
+  >
+    <h2 class="text-2xl font-bold text-[#070C63] text-center mb-2">
+      Detalle de Auditoría
+    </h2>
+    <div class="h-0.5 w-1/3 mx-auto mb-8 bg-[#070C63] rounded-full"></div>
+
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 text-[#344050] text-sm"
+    >
+      <div>
+        <h3 class="font-semibold text-[#070C63]">Nombre:</h3>
+        <p>{{ auditoria?.nombre }}</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-[#070C63]">Tipo:</h3>
+        <p>{{ auditoria?.tipo }}</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-[#070C63]">Entidad:</h3>
+        <p>{{ auditoria?.entidad }}</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-[#070C63]">Fecha:</h3>
+        <p>{{ auditoria?.fecha | date : "dd/MM/yyyy" }}</p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-[#070C63]">Estatus:</h3>
+        <p>
+          {{
+            auditoria?.estatus === 1
+              ? "Recibido"
+              : auditoria?.estatus === 2
+              ? "En proceso"
+              : auditoria?.estatus === 3
+              ? "Atendido"
+              : auditoria?.estatus
+          }}
+        </p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-[#070C63]">Favorito:</h3>
+        <p>{{ auditoria?.favorito ? "Sí" : "No" }}</p>
+      </div>
+      <div class="sm:col-span-2">
+        <h3 class="font-semibold text-[#070C63]">Descripción:</h3>
+        <p>{{ auditoria?.descripcion }}</p>
+      </div>
+      <div class="sm:col-span-2">
+        <h3 class="font-semibold text-[#070C63]">Observaciones:</h3>
+        <p>{{ auditoria?.observaciones }}</p>
+      </div>
+      <div class="sm:col-span-2">
+        <h3 class="font-semibold text-[#070C63]">Resultados:</h3>
+        <p>{{ auditoria?.resultados }}</p>
+      </div>
+    </div>
+
+    <div class="mt-10 border-t border-[#D4DEE8] pt-6">
+      <h3 class="text-lg font-bold text-[#070C63] mb-2">Responsable</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[#344050] text-sm">
+        <div>
+          <h4 class="font-semibold text-[#070C63]">Nombre:</h4>
+          <p>
+            {{ auditoria?.usuario?.nombre }}
+            {{ auditoria?.usuario?.ape_paterno }}
+            {{ auditoria?.usuario?.ape_materno }}
+          </p>
+        </div>
+        <div>
+          <h4 class="font-semibold text-[#070C63]">Correo:</h4>
+          <p>{{ auditoria?.usuario?.correo }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
